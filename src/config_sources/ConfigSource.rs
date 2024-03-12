@@ -7,5 +7,5 @@ pub trait ConfigSource {
 
     // Methods
     fn update_from_source(&mut self);
-    fn get_updated_config(&self) -> HashMap<String,String> ;
+    fn get_updated_config(&mut self) -> HashMap<String,String> ;
 }

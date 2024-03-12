@@ -19,13 +19,16 @@ impl ConfigSource for EnvironmentVariableManager {
 
     fn update_from_source(&mut self) {
         // Implement updating from source here
-        unread = true;
+        for (key, value) in env::vars() {
+            self.vars.insert(key, value);
+        }
+        self.unread = true;
         return
     }
 
-    fn get_updated_config(&self) -> HashMap<String,String> {
+    fn get_updated_config(&mut self) -> HashMap<String,String> {
         //parse for dd config here
-        unread = false;
+        self.unread = false;
         self.vars.clone()
     }
 }
@@ -45,7 +48,11 @@ impl EnvironmentVariableManager {
     
     pub fn print_vars(&self) {
         for (key, value) in &self.vars {
+            if key.contains("DD") {
+                print!("DD\n\n\n");
+            }
             println!("{}: {}", key, value);
+
         }
     }
 }
