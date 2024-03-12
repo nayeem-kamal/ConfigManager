@@ -4,6 +4,7 @@ pub trait ConfigSource {
     // Getters
     fn name(&self) -> String;
     fn unread(&self) -> bool;
+    fn print(&self);
 
     // Methods
     fn update_from_source(&mut self);

@@ -31,6 +31,15 @@ impl ConfigSource for EnvironmentVariableManager {
         self.unread = false;
         self.vars.clone()
     }
+    fn print(&self) {
+        for (key, value) in &self.vars {
+            if key.contains("DD") {
+                print!("DD\n\n\n");
+            }
+            println!("{}: {}", key, value);
+
+        }
+    }
 }
 
 impl EnvironmentVariableManager {
@@ -46,13 +55,5 @@ impl EnvironmentVariableManager {
         }
     }
     
-    pub fn print_vars(&self) {
-        for (key, value) in &self.vars {
-            if key.contains("DD") {
-                print!("DD\n\n\n");
-            }
-            println!("{}: {}", key, value);
-
-        }
-    }
+    
 }
